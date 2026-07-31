@@ -1,24 +1,19 @@
 # HANDOFF — keigo-higashino-memorial（東野圭吾作品紀念館）
-更新：2026-07-31／claude
+更新：2026-08-01／claude
 
 ## 目前目標
 單檔靜態網站，整理東野圭吾 108 部作品的簡介、系列脈絡、影視改編與台灣購書／OTT 連結。
 已於 GitHub Pages 公開上線：https://leonavibe.github.io/keigo-higashino-memorial/
 
 ## 狀態
-- 已完成：資料層與互動層全數驗收通過——slug／id 無重複、11 個系列宣告數與實際筆數全對、
-  hasTv(71) 與改編清單完全一致、110 筆改編都對得到作品、無本機路徑或金鑰殘留
-- 已完成：網址佔位符換為 `leonavibe.github.io/keigo-higashino-memorial`（index.html／robots.txt／
-  sitemap.xml 共 8 處），換後 DATA 與 ld+json 重新解析通過
-- 已完成：補上 `.nojekyll`（DEPLOY.md 列為建議項）
-- 已完成：2026-07-31 建 public repo `leonavibe/keigo-higashino-memorial` 並開啟 Pages
-  （main / root），線上驗證 `/`、`/robots.txt`、`/sitemap.xml`、`/og-image.jpg` 皆 200、
-  http 自動 301 轉 https、canonical 與 sitemap 指向正確、404 頁正常
-- 已完成：`og:image`／`twitter:image` 由相對路徑改為絕對網址（FB、LINE 官方要求）
+- 已上線：public repo + Pages（main / root），`/`、robots、sitemap、og-image 皆 200，
+  http 自動 301 轉 https，canonical／sitemap／og:image 全指向正式網址
+- 已完成：作品總表改用「出版類別＋出版平台」篩選並加「有台灣出版」；影視改編加搜尋框、
+  影音平台篩選、「有平台上架」勾選，移除筆數，白夜行(tbd)置頂
 - 進行中：無
-- 驗收現況：Chrome 實機驗收全綠（2026-07-31）——搜尋中文／日文／簡介、無結果空狀態、
-  系列篩選(加賀 13 筆)、只看有改編(71 筆)、作品彈窗、ESC 關閉、深淺色切換、深層連結 #w-<slug>
-  皆正常；console 零錯誤（唯一例外來自瀏覽器擴充功能，非本站）
+- 驗收現況：Chrome 實機全綠（2026-08-01）——兩區搜尋與全部篩選組合實測筆數與資料層吻合、
+  彈窗／ESC／深淺色／深層連結正常、66 個彈窗表格零溢出；console 零錯誤
+  （唯一例外來自瀏覽器擴充功能，非本站）
 
 ## 下一步（接手的人從這裡開始）
 1. 貼網址到 FB／LINE 確認預覽圖出得來；沒出圖用 FB 分享偵錯工具按 Scrape Again
@@ -29,12 +24,11 @@
 - **107 vs 108 是刻意的，不要「修正」**：`works` 陣列 108 筆，首頁 stats 寫「107 部」，
   拆開是 長篇75＋短篇集27＋隨筆5＝107，第 108 筆是繪本《聖誕婆婆》不計入。
   使用者 2026-07-31 裁定保留此口徑。作品總表標題仍顯示「108 / 108 部」，兩數並存屬預期
-- 作品總表欄寬是 `table-layout:fixed` + `.tbl-wrap th/td:nth-child(n)` 百分比手動指定，
-  合計必須 100%；增刪欄要同步改。**表格 CSS 一律寫在 `.tbl-wrap` 底下**——彈窗的
-  `.edtbl` 是獨立表格，曾因全域 `table{min-width:820px}` 洩漏而長出橫向捲軸
-- **元件樣式一律加容器前綴**：已踩過兩次通用選擇器外洩——`table{min-width:820px}` 把彈窗
-  表格撐出捲軸；新聞卡的 `.nw` 撞到表格 no-wrap 的 `.nw`，讓日期格長出邊框與底色。
-  現已改為 `.tbl-wrap table`、`.news .nw`，表格 no-wrap 改名 `.nbr`
+- **元件樣式一律加容器前綴**——已踩過兩次通用選擇器外洩：`table{min-width:820px}` 把彈窗
+  表格撐出橫向捲軸；新聞卡的 `.nw` 撞到表格 no-wrap 的 `.nw`，讓日期格長出邊框與底色。
+  現為 `.tbl-wrap table`、`.news .nw`，表格 no-wrap 已改名 `.nbr`
+- 作品總表欄寬是 `table-layout:fixed` + `.tbl-wrap th/td:nth-child(n)` 百分比指定，
+  合計必須 100%；增刪欄要同步改。彈窗 `.edtbl` 是獨立表格，兩者不共用規則
 - 出版類別／出版平台／影音平台的選項都由資料即時推導（只列出實際有內容的），
   不是寫死清單。`platsOf()` 必須與彈窗的 `edLinks()` 保持同一套判定，否則會出現
   「篩得到卻點不到連結」
