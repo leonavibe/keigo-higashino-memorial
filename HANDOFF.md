@@ -29,8 +29,12 @@
 - **107 vs 108 是刻意的，不要「修正」**：`works` 陣列 108 筆，首頁 stats 寫「107 部」，
   拆開是 長篇75＋短篇集27＋隨筆5＝107，第 108 筆是繪本《聖誕婆婆》不計入。
   使用者 2026-07-31 裁定保留此口徑。作品總表標題仍顯示「108 / 108 部」，兩數並存屬預期
-- 作品總表的欄寬是 `table-layout:fixed` + `.tbl-wrap th/td:nth-child(n)` 百分比手動指定，
-  合計必須是 100%。改欄位順序或增刪欄一定要同步改這組規則，否則版面會亂
+- 作品總表欄寬是 `table-layout:fixed` + `.tbl-wrap th/td:nth-child(n)` 百分比手動指定，
+  合計必須 100%；增刪欄要同步改。**表格 CSS 一律寫在 `.tbl-wrap` 底下**——彈窗的
+  `.edtbl` 是獨立表格，曾因全域 `table{min-width:820px}` 洩漏而長出橫向捲軸
+- 出版類別／出版平台／影音平台的選項都由資料即時推導（只列出實際有內容的），
+  不是寫死清單。`platsOf()` 必須與彈窗的 `edLinks()` 保持同一套判定，否則會出現
+  「篩得到卻點不到連結」
 - 全站資料都在 index.html 內嵌的 `const DATA = {...}` **單獨一行**（約 1000 行檔案裡的一行）。
   不要手動編輯那行，用 DEPLOY.md 末尾的 Python 腳本改
 - CSP 是 `default-src 'none'`，只放行 inline script／style 與 Google Fonts。
