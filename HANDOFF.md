@@ -20,11 +20,12 @@
 1. push 到 `leonavibe/keigo-higashino-memorial`，Settings → Pages 開 main / root
 2. 上線後照 DEPLOY.md「上線後檢查」跑一遍：FB 分享預覽圖、robots.txt／sitemap.xml 可讀、
    Search Console 驗證所有權送 sitemap、Rich Results Test 驗結構化資料
-3. 決定首頁「107 部」與作品總表「108 / 108 部」要不要統一（見地雷）
+3. （選配）替「107 部」加一句口徑說明，讓讀者知道 108 筆中的繪本未計入
 
 ## 地雷（別踩）
-- **107 vs 108**：`works` 陣列 108 筆，但首頁 stats 寫「107 部」。拆開是 長篇75＋短篇集27＋隨筆5＝107，
-  第 108 筆是繪本《聖誕婆婆》。看起來是刻意不把繪本計入的口徑，不是漏算——要改前先確認原意
+- **107 vs 108 是刻意的，不要「修正」**：`works` 陣列 108 筆，首頁 stats 寫「107 部」，
+  拆開是 長篇75＋短篇集27＋隨筆5＝107，第 108 筆是繪本《聖誕婆婆》不計入。
+  使用者 2026-07-31 裁定保留此口徑。作品總表標題仍顯示「108 / 108 部」，兩數並存屬預期
 - 全站資料都在 index.html 內嵌的 `const DATA = {...}` **單獨一行**（約 1000 行檔案裡的一行）。
   不要手動編輯那行，用 DEPLOY.md 末尾的 Python 腳本改
 - CSP 是 `default-src 'none'`，只放行 inline script／style 與 Google Fonts。
