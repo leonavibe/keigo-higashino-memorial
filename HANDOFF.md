@@ -2,8 +2,8 @@
 更新：2026-07-31／claude
 
 ## 目前目標
-單檔靜態網站，整理東野圭吾 108 部作品的簡介、系列脈絡、影視改編與台灣購書／OTT 連結，
-準備以 GitHub Pages 公開上線（leonavibe 帳號）。
+單檔靜態網站，整理東野圭吾 108 部作品的簡介、系列脈絡、影視改編與台灣購書／OTT 連結。
+已於 GitHub Pages 公開上線：https://leonavibe.github.io/keigo-higashino-memorial/
 
 ## 狀態
 - 已完成：資料層與互動層全數驗收通過——slug／id 無重複、11 個系列宣告數與實際筆數全對、
@@ -11,16 +11,21 @@
 - 已完成：網址佔位符換為 `leonavibe.github.io/keigo-higashino-memorial`（index.html／robots.txt／
   sitemap.xml 共 8 處），換後 DATA 與 ld+json 重新解析通過
 - 已完成：補上 `.nojekyll`（DEPLOY.md 列為建議項）
-- 進行中：尚未 push、尚未開 GitHub Pages（本 commit 為此 repo 首個 commit）
+- 已完成：2026-07-31 建 public repo `leonavibe/keigo-higashino-memorial` 並開啟 Pages
+  （main / root），線上驗證 `/`、`/robots.txt`、`/sitemap.xml`、`/og-image.jpg` 皆 200、
+  http 自動 301 轉 https、canonical 與 sitemap 指向正確、404 頁正常
+- 進行中：無
 - 驗收現況：Chrome 實機驗收全綠（2026-07-31）——搜尋中文／日文／簡介、無結果空狀態、
   系列篩選(加賀 13 筆)、只看有改編(71 筆)、作品彈窗、ESC 關閉、深淺色切換、深層連結 #w-<slug>
   皆正常；console 零錯誤（唯一例外來自瀏覽器擴充功能，非本站）
 
 ## 下一步（接手的人從這裡開始）
-1. push 到 `leonavibe/keigo-higashino-memorial`，Settings → Pages 開 main / root
-2. 上線後照 DEPLOY.md「上線後檢查」跑一遍：FB 分享預覽圖、robots.txt／sitemap.xml 可讀、
-   Search Console 驗證所有權送 sitemap、Rich Results Test 驗結構化資料
-3. （選配）替「107 部」加一句口徑說明，讓讀者知道 108 筆中的繪本未計入
+1. **`og:image` 建議改絕對網址**——目前是相對路徑 `og-image.jpg`，在站內解析正確，
+   但 Facebook／LINE 官方都要求絕對網址，相對路徑的抓取結果各家不一。上線後網址已確定，
+   改成 `https://leonavibe.github.io/keigo-higashino-memorial/og-image.jpg` 較保險
+2. 貼網址到 FB／LINE 確認預覽圖出得來；沒出圖用 FB 分享偵錯工具按 Scrape Again
+3. Google Search Console 驗證所有權並送出 sitemap；Rich Results Test 驗結構化資料
+4. （選配）替「107 部」加一句口徑說明，讓讀者知道 108 筆中的繪本未計入
 
 ## 地雷（別踩）
 - **107 vs 108 是刻意的，不要「修正」**：`works` 陣列 108 筆，首頁 stats 寫「107 部」，
