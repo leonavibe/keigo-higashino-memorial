@@ -161,6 +161,10 @@ section{scroll-margin-top:64px}
 .tools{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:14px 16px;
   display:flex;flex-wrap:wrap;gap:10px;align-items:center;position:sticky;top:57px;z-index:40;box-shadow:var(--shadow)}
 .tools.nostick{position:static}
+/* 作品總表工具列固定兩排：上排搜尋與下拉，下排勾選與檢視切換。
+   靠 flex-wrap 自然折行會讓勾選被拆散(有台灣出版單獨掉到第二排)，故明確切排 */
+.tools-r2{flex:1 0 100%;display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+  margin-top:2px;padding-top:12px;border-top:1px solid var(--line2)}
 .tools input[type=search],.tools select{font-family:inherit;font-size:13px;color:var(--ink);background:var(--bg);
   border:1px solid var(--line-strong);border-radius:3px;padding:7px 9px}
 .tools input[type=search]{flex:1 1 190px;min-width:150px}
@@ -515,6 +519,7 @@ footer a{color:var(--ink2)}
 <option value="series">依系列與集數</option>
 <option value="title">依中文書名</option>
 </select>
+<div class="tools-r2">
 <label class="chk"><input id="fAward" type="checkbox"/>有得獎</label>
 <label class="chk"><input id="fTv" type="checkbox"/>有影視改編</label>
 <label class="chk"><input id="fTw" type="checkbox"/>有台灣出版</label>
@@ -522,6 +527,7 @@ footer a{color:var(--ink2)}
 <button aria-pressed="true" data-v="cards">卡片</button>
 <button aria-pressed="false" data-v="table">表格</button>
 <button aria-pressed="false" data-v="tl">年表</button>
+</div>
 </div>
 </div>
 <div class="count" id="count"></div>
