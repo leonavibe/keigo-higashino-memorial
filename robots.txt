@@ -1,0 +1,75 @@
+# 東野圭吾作品紀念館 — robots.txt
+# 方針：歡迎一般搜尋引擎收錄，但拒絕 AI 訓練用與大量抓取用的爬蟲。
+# 注意：robots.txt 只是「請求」，不守規矩的爬蟲仍會照抓。
+
+# ---- 一般搜尋引擎：允許 ----
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# ---- AI 訓練 / 語料蒐集：拒絕 ----
+User-agent: GPTBot
+Disallow: /
+User-agent: OAI-SearchBot
+Disallow: /
+User-agent: ChatGPT-User
+Disallow: /
+User-agent: ClaudeBot
+Disallow: /
+User-agent: Claude-Web
+Disallow: /
+User-agent: anthropic-ai
+Disallow: /
+User-agent: Google-Extended
+Disallow: /
+User-agent: Applebot-Extended
+Disallow: /
+User-agent: PerplexityBot
+Disallow: /
+User-agent: CCBot
+Disallow: /
+User-agent: Bytespider
+Disallow: /
+User-agent: Amazonbot
+Disallow: /
+User-agent: FacebookBot
+Disallow: /
+User-agent: meta-externalagent
+Disallow: /
+User-agent: Diffbot
+Disallow: /
+User-agent: omgili
+Disallow: /
+User-agent: ImagesiftBot
+Disallow: /
+User-agent: Timpibot
+Disallow: /
+
+# ---- SEO / 內容盤點工具：拒絕(這類最常整站抓) ----
+User-agent: AhrefsBot
+Disallow: /
+User-agent: SemrushBot
+Disallow: /
+User-agent: MJ12bot
+Disallow: /
+User-agent: DotBot
+Disallow: /
+User-agent: DataForSeoBot
+Disallow: /
+User-agent: Screaming Frog SEO Spider
+Disallow: /
+
+# ---- 其餘：允許但放慢 ----
+User-agent: *
+Allow: /
+Crawl-delay: 10
+
+Sitemap: https://leonavibe.github.io/keigo-higashino-memorial/sitemap.xml
