@@ -203,6 +203,17 @@ tr:last-child td{border-bottom:0}
 tbody tr{cursor:pointer}
 tbody tr:hover{background:var(--panel2)}
 td.n{font-family:"IBM Plex Mono",monospace;color:var(--ink3);white-space:nowrap}
+/* 作品總表欄寬：得獎欄原本自動撐到 32%，壓縮後把空間還給前四欄，
+   讓中文書名／日文原名／系列／類型 儘量不斷行；得獎與影視改編允許折行 */
+.tbl-wrap table{table-layout:fixed}
+.tbl-wrap th:nth-child(1),.tbl-wrap td:nth-child(1){width:8.5%}   /* 出版 */
+.tbl-wrap th:nth-child(2),.tbl-wrap td:nth-child(2){width:19%}    /* 中文書名 */
+.tbl-wrap th:nth-child(3),.tbl-wrap td:nth-child(3){width:20%}    /* 日文原名 */
+.tbl-wrap th:nth-child(4),.tbl-wrap td:nth-child(4){width:12%}    /* 系列 */
+.tbl-wrap th:nth-child(5),.tbl-wrap td:nth-child(5){width:7%}     /* 類型 */
+.tbl-wrap th:nth-child(6),.tbl-wrap td:nth-child(6){width:11%}    /* 台灣版本 */
+.tbl-wrap th:nth-child(7),.tbl-wrap td:nth-child(7){width:11.5%}  /* 得獎 */
+.tbl-wrap th:nth-child(8),.tbl-wrap td:nth-child(8){width:11%}    /* 影視改編 */
 
 /* timeline view */
 .tl{border-left:1px solid var(--line);margin-left:6px}
