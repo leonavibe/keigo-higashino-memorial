@@ -267,11 +267,11 @@ section{scroll-margin-top:64px}
 .cst i{font-style:normal;color:var(--ink3)}
 /* news */
 .news{display:grid;grid-template-columns:repeat(auto-fill,minmax(292px,1fr));gap:11px}
-.nw{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:14px 16px;display:block}
-.nw:hover{border-color:var(--accent);text-decoration:none}
-.nw .k{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;color:var(--teal)}
-.nw h4{font-size:14.5px;margin:5px 0 7px;color:var(--ink);line-height:1.55}
-.nw .meta{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink3)}
+.news .nw{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:14px 16px;display:block}
+.news .nw:hover{border-color:var(--accent);text-decoration:none}
+.news .nw .k{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;color:var(--teal)}
+.news .nw h4{font-size:14.5px;margin:5px 0 7px;color:var(--ink);line-height:1.55}
+.news .nw .meta{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink3)}
 
 /* gaps dashboard */
 .btn{font-family:inherit;font-size:12.5px;background:var(--panel);color:var(--ink);border:1px solid var(--line);
@@ -304,13 +304,13 @@ section{scroll-margin-top:64px}
 .card p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .edtbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .edtbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:2px}
-.edtbl .nw{white-space:nowrap}                      /* 日期與年份不可斷行 */
+.edtbl .nbr{white-space:nowrap}                      /* 日期與年份不可斷行 */
 .edtbl td.edt{word-break:break-word;min-width:9em}  /* 長書名讓它換行，不要去擠日期欄 */
 .edtbl th{text-align:left;font-weight:500;color:var(--ink3);font-size:11.5px;letter-spacing:.08em;padding:0 20px 8px 0;background:transparent}
 .edtbl td{padding:13px 20px 13px 0;border-bottom:1px solid var(--line2);vertical-align:top;
   background:transparent;word-break:break-word}
 .edtbl td:last-child,.edtbl th:last-child{padding-right:0}
-.edtbl td .mono,.edtbl td.mono{background:transparent}
+.edtbl td .mono,.edtbl td.mono{background:transparent}  /* 保險：等寬字欄位不吃任何底色 */
 .edtbl.edtbl-ed,.edtbl.edtbl-ad{table-layout:fixed}
 .edtbl.edtbl-ed th:nth-child(1),.edtbl.edtbl-ed td:nth-child(1){width:60%}
 .edtbl.edtbl-ed th:nth-child(2),.edtbl.edtbl-ed td:nth-child(2){width:22%}
@@ -915,7 +915,7 @@ function renderWorkSheet(id){
   const edRows = eds.map(e => `<tr>
       <td class="edt" data-l="版本">${esc(edTitle(w, e))}</td>
       <td data-l="出版社">${esc(e.publisher)}</td>
-      <td class="mono nw" data-l="上市日期">${e.date ? esc(ymOnly(e.date)) : '<span class="muted">待補</span>'}</td>
+      <td class="mono nbr" data-l="上市日期">${e.date ? esc(ymOnly(e.date)) : '<span class="muted">待補</span>'}</td>
     </tr>`).join("");
 
   /* --- 購書連結：一個版本一組 --- */
@@ -929,7 +929,7 @@ function renderWorkSheet(id){
   /* --- 影視改編：先列版本表 --- */
   const adRows = ads.map(a => `<tr>
       <td class="edt" data-l="名稱">${esc(a.title)}</td>
-      <td class="mono nw" data-l="上映／播出">${a.year} ${esc(a.kind)}</td>
+      <td class="mono nbr" data-l="上映／播出">${a.year} ${esc(a.kind)}</td>
       <td data-l="主演與角色">${a.cast.length
             ? a.cast.slice(0, 4).map(c => esc(c[0]) + (c[1] ? " 飾 " + esc(c[1]) : "")).join("、")
               + (a.cast.length > 4 ? " 等" : "")

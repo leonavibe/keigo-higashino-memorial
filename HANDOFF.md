@@ -32,6 +32,9 @@
 - 作品總表欄寬是 `table-layout:fixed` + `.tbl-wrap th/td:nth-child(n)` 百分比手動指定，
   合計必須 100%；增刪欄要同步改。**表格 CSS 一律寫在 `.tbl-wrap` 底下**——彈窗的
   `.edtbl` 是獨立表格，曾因全域 `table{min-width:820px}` 洩漏而長出橫向捲軸
+- **元件樣式一律加容器前綴**：已踩過兩次通用選擇器外洩——`table{min-width:820px}` 把彈窗
+  表格撐出捲軸；新聞卡的 `.nw` 撞到表格 no-wrap 的 `.nw`，讓日期格長出邊框與底色。
+  現已改為 `.tbl-wrap table`、`.news .nw`，表格 no-wrap 改名 `.nbr`
 - 出版類別／出版平台／影音平台的選項都由資料即時推導（只列出實際有內容的），
   不是寫死清單。`platsOf()` 必須與彈窗的 `edLinks()` 保持同一套判定，否則會出現
   「篩得到卻點不到連結」
