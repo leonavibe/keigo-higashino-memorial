@@ -6,8 +6,8 @@
 已於 GitHub Pages 公開上線：https://leonavibe.github.io/keigo-higashino-memorial/
 
 ## 狀態
-- 已上線：public repo + Pages（main / root），`/`、robots、sitemap、og-image 皆 200，
-  http 自動 301 轉 https，canonical／sitemap／og:image 全指向正式網址
+- 已上線：public repo + Pages（main / root），四個入口皆 200、http 301 轉 https、
+  canonical／sitemap／og:image 全指向正式網址
 - 已完成：作品總表改用「出版類別＋出版平台」篩選並加「有台灣出版」；影視改編加搜尋框、
   影音平台篩選、「有平台上架」勾選，移除筆數，白夜行(tbd)置頂
 - 已完成：接上 GoatCounter 瀏覽計數（無 cookie），CSP 依 count.js 實際行為最小放行
