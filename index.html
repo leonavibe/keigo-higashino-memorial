@@ -12,7 +12,7 @@
 <meta content="https://leonavibe.github.io/keigo-higashino-memorial/" property="og:url"/>
 <meta content="strict-origin-when-cross-origin" name="referrer"/>
 <meta content="light dark" name="color-scheme"/>
-<meta content="default-src 'none'; base-uri 'none'; form-action 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; frame-src 'none'; object-src 'none'; manifest-src 'none'" http-equiv="Content-Security-Policy"/>
+<meta content="default-src 'none'; base-uri 'none'; form-action 'none'; script-src 'unsafe-inline' https://gc.zgo.at; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://leonavibe.goatcounter.com; connect-src https://leonavibe.goatcounter.com; frame-src 'none'; object-src 'none'; manifest-src 'none'" http-equiv="Content-Security-Policy"/>
 <meta content="index,follow,noarchive,noimageindex,max-snippet:160,max-image-preview:standard,noai,noimageai" name="robots"/>
 <meta content="index,follow,noarchive,noimageindex" name="googlebot"/>
 <meta content="index,follow,noarchive" name="bingbot"/>
@@ -1049,5 +1049,9 @@ document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeSheet(); });
 drawAxis(); drawLegend(); render(); renderAd();
 routeFromHash();   // 支援直接以 #w12 / #a3 開啟
 </script>
+<!-- GoatCounter：無 cookie、不追蹤個人的瀏覽計數。
+     以 sendBeacon 送出，失敗時退回 img beacon，兩者皆已在上方 CSP 放行。
+     在網址後加 #toggle-goatcounter 可切換「不計入自己」。 -->
+<script async data-goatcounter="https://leonavibe.goatcounter.com/count" src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
