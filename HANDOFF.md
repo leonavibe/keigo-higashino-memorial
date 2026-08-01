@@ -45,14 +45,11 @@
   加任何外部資源都要同步改 `<meta http-equiv="Content-Security-Policy">`，否則會被靜默擋掉
 - 搜尋到的 `TODO`／`PLACEHOLDER`／`待補` 多半是 CSS class 名、HTML placeholder 屬性、
   或 UI 的 fallback 文案，不是未完成標記；`NaN` 是撞到 `naniwa-2012`、`sk-` 是撞到 `mask-2019`
-- 5 部作品無台灣版本與購書連結（遺作《永遠的記憶》、《微不足道的蓄意》、《假面人生》、
-  《夢想奔馳在都靈》、《聖誕婆婆》），UI 會顯示「待補」標籤——這是真實現況不是 bug
-- 改編資料有 1 筆 `verified:false`（毒笑小說〈殺意使用說明書〉，播出年份待確認），
-  另 1 筆《解憂雜貨店》韓國版導演姓名待確認，兩者都會顯示給讀者
-- 母 repo（~/Code，miku4ocean/code-workspace）的 .gitignore 用 `*/` 忽略本目錄，
-  本專案是獨立 repo，git 操作不會互相污染
-- 本 repo 用 leonavibe 身分（repo-local git config），與其他專案的 miku4ocean 不同。
-  操作前先 `gh auth switch --user leonavibe`
+- 5 部作品無台灣版本與購書連結、1 筆改編 `verified:false`、2 處「待確認」字樣會顯示給
+  讀者——都是真實現況不是 bug
+- 母 repo（~/Code）以 `*/` 忽略本目錄，本專案是獨立 repo，git 操作不互相污染
+- 本 repo 用 leonavibe 身分（repo-local config）。`gh` 的 active 帳號是**全域**狀態、
+  會被其他工作階段切走，push 前先 `gh auth switch --user leonavibe`（已被 403 擋過一次）
 
 ## 待補（原作者確認）
 - 資料來源與整理方式（作品簡介、演員角色表出自何處）／是否有授權疑慮
