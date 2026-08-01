@@ -15,6 +15,9 @@
 - 已完成：Search Console 驗證＋要求建立索引；FB／LINE 預覽圖正常；GoatCounter 已收到資料；
   ld+json 經 Schema Validator 零錯誤零警告（Rich Results Test 回報「未偵測到項目」屬正常，
   Person／WebSite 本就不產生複合式結果）
+- 已完成：購書連結全站稽核（2026-08-01）——1003 個連結逐一實機驗證，43 部作品補上
+  47 個缺漏版本、修正 3 個標錯的「初版」，讀者點得到的連結 924→1001、資料裡有卻
+  渲染不出來的 77→0
 - 進行中：無
 - 驗收現況：Chrome 實機全綠（2026-08-01）——兩區搜尋與全部篩選組合實測筆數與資料層吻合、
   彈窗／ESC／深淺色／深層連結正常、66 個彈窗表格零溢出；console 零錯誤
@@ -48,6 +51,11 @@
   或 UI 的 fallback 文案，不是未完成標記；`NaN` 是撞到 `naniwa-2012`、`sk-` 是撞到 `mask-2019`
 - 5 部作品無台灣版本與購書連結、1 筆改編 `verified:false`、2 處「待確認」字樣會顯示給
   讀者——都是真實現況不是 bug
+- **作品層級的 `links` 已對 43 部作品清空並落到所屬版本**。`edLinks()` 是把 `work.links`
+  併進 `editions[0]` 且同平台不覆蓋——書出新版卻沒建 edition 時，連結會被舊版蓋掉而
+  永遠點不到（曾累積 77 個）。**新增版本一律連 edition 一起建，別只往 `work.links` 塞**
+- 台灣書店（books.com.tw／eslite／hyread）對 curl 與 WebFetch 一律 403，只有 Chrome
+  實機能過；同網域可用頁內 `fetch()` 批次抓，誠品的欄位標籤有換行要先剝空白
 - 母 repo（~/Code）以 `*/` 忽略本目錄，本專案是獨立 repo，git 操作不互相污染
 - 本 repo 用 leonavibe 身分（repo-local config）。`gh` 的 active 帳號是**全域**狀態、
   會被其他工作階段切走，push 前先 `gh auth switch --user leonavibe`（已被 403 擋過一次）
