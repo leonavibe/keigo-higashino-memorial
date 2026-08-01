@@ -10,15 +10,22 @@
   http 自動 301 轉 https，canonical／sitemap／og:image 全指向正式網址
 - 已完成：作品總表改用「出版類別＋出版平台」篩選並加「有台灣出版」；影視改編加搜尋框、
   影音平台篩選、「有平台上架」勾選，移除筆數，白夜行(tbd)置頂
+- 已完成：Search Console 以 HTML 標記驗證通過（meta 在 index.html head），首頁已要求建立索引；
+  FB／LINE 分享預覽圖確認顯示新版
 - 進行中：無
 - 驗收現況：Chrome 實機全綠（2026-08-01）——兩區搜尋與全部篩選組合實測筆數與資料層吻合、
   彈窗／ESC／深淺色／深層連結正常、66 個彈窗表格零溢出；console 零錯誤
   （唯一例外來自瀏覽器擴充功能，非本站）
 
 ## 下一步（接手的人從這裡開始）
-1. 貼網址到 FB／LINE 確認預覽圖出得來；沒出圖用 FB 分享偵錯工具按 Scrape Again
-2. Google Search Console 驗證所有權並送出 sitemap；Rich Results Test 驗結構化資料
+1. Search Console 的 sitemap 那列填成 `/sitemap.xml`（多了開頭斜線），Google 因此去抓
+   `leonavibe.github.io/sitemap.xml`(404) 而顯示「無法擷取」。該列刪不掉也送不出新的，
+   疑似瀏覽器擴充干擾——用無痕視窗重送，只填 `sitemap.xml` 不加斜線。
+   **不急**：robots.txt 已有絕對網址的 `Sitemap:` 宣告，Google 照樣找得到
+2. Rich Results Test 驗 ld+json 結構化資料
 3. （選配）替「107 部」加一句口徑說明，讓讀者知道 108 筆中的繪本未計入
+4. （選配）清掉 14 個死樣式 class／27 條規則／1730 bytes（`.btn` `.buy-*` `.tags` `.close` 等，
+   實測所有狀態 DOM 命中皆 0）——它們是下次撞名的來源
 
 ## 地雷（別踩）
 - **107 vs 108 是刻意的，不要「修正」**：`works` 陣列 108 筆，首頁 stats 寫「107 部」，
