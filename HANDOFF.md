@@ -10,6 +10,7 @@
   http 自動 301 轉 https，canonical／sitemap／og:image 全指向正式網址
 - 已完成：作品總表改用「出版類別＋出版平台」篩選並加「有台灣出版」；影視改編加搜尋框、
   影音平台篩選、「有平台上架」勾選，移除筆數，白夜行(tbd)置頂
+- 已完成：接上 GoatCounter 瀏覽計數（無 cookie），CSP 依 count.js 實際行為最小放行
 - 已完成：全站 CSS 撞名稽核（183 條規則跨元件比對，無殘留撞名）＋清掉 14 個死 class／
   27 條規則／1731 bytes
 - 已完成：Search Console 以 HTML 標記驗證通過（meta 在 index.html head），首頁已要求建立索引；
@@ -41,8 +42,9 @@
   「篩得到卻點不到連結」
 - 全站資料都在 index.html 內嵌的 `const DATA = {...}` **單獨一行**（約 1000 行檔案裡的一行）。
   不要手動編輯那行，用 DEPLOY.md 末尾的 Python 腳本改
-- CSP 是 `default-src 'none'`，只放行 inline script／style 與 Google Fonts。
-  加任何外部資源都要同步改 `<meta http-equiv="Content-Security-Policy">`，否則會被靜默擋掉
+- CSP 是 `default-src 'none'`，逐項白名單：inline script／style、Google Fonts、
+  gc.zgo.at(GoatCounter 腳本)、leonavibe.goatcounter.com(connect-src 與 img-src，
+  分別對應 sendBeacon 與其 img 後備)。**加任何外部資源都要同步改那個 meta**，否則靜默被擋
 - 搜尋到的 `TODO`／`PLACEHOLDER`／`待補` 多半是 CSS class 名、HTML placeholder 屬性、
   或 UI 的 fallback 文案，不是未完成標記；`NaN` 是撞到 `naniwa-2012`、`sk-` 是撞到 `mask-2019`
 - 5 部作品無台灣版本與購書連結、1 筆改編 `verified:false`、2 處「待確認」字樣會顯示給
