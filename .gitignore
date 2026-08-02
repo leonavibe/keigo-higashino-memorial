@@ -1,4 +1,8 @@
-# 購書連結稽核用的匯出檔：由 DATA 產生的衍生物，且會被 GitHub Pages 一併發佈，不入版控
+# 內部工作文件：本 repo 是 public，且根目錄即 GitHub Pages 發佈目錄，一律不入版控
+HANDOFF.md
+爬取備忘.md
+
+# 購書連結稽核用的匯出檔：由 DATA 產生的衍生物
 購書連結匯出.csv
 購書連結匯出.md
 版本提案.csv
