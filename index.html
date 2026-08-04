@@ -94,8 +94,18 @@ a:hover{text-decoration:underline}
 .brand{font-family:"Noto Serif TC",serif;font-weight:600;font-size:16px;letter-spacing:.06em;white-space:nowrap}
 .brand span{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink3);margin-left:8px;letter-spacing:.05em}
 .topnav{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
-.topnav a{font-size:13px;color:var(--ink2);padding:6px 10px;border-radius:3px}
+.topnav a{font-size:13px;color:var(--ink2);padding:6px 10px;border-radius:3px;transition:background .15s,color .15s}
 .topnav a:hover{background:var(--panel2);text-decoration:none;color:var(--ink)}
+.topnav a.active{background:var(--accent);color:#fff}
+/* page router */
+main[data-page] > *{display:none !important}
+main[data-page="home"] > #home,
+main[data-page="home"] > .axis-sec,
+main[data-page="home"] > #bio{display:block !important}
+main[data-page="works"] > #works{display:block !important}
+main[data-page="series"] > #series{display:block !important}
+main[data-page="screen"] > #screen{display:block !important}
+main[data-page="fans"] > #fans{display:block !important}
 .tgl{flex:none;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--panel);
   color:var(--ink2);border-radius:3px;padding:5px 10px;font-size:12px;cursor:pointer;font-family:"IBM Plex Mono",monospace}
 .tgl:hover{color:var(--ink);border-color:var(--accent)}
@@ -1058,17 +1068,30 @@ function closeSheet(){
   }
 }
 let currentFrag = null;
+const PAGES = ["home","works","series","screen","fans"];
+let currentPage = null;
+function setPage(page){
+  if(page === currentPage) return;
+  currentPage = page;
+  $("#main").dataset.page = page;
+  document.querySelectorAll(".topnav a").forEach(a=>{
+    a.classList.toggle("active", a.getAttribute("href") === "#"+page);
+  });
+  window.scrollTo(0,0);
+}
 function routeFromHash(){
   const h = location.hash.slice(1);
-  if(h === currentFrag) return;      // 冪等:hashchange 事後再觸發一次也不會重畫
+  if(h === currentFrag) return;
   currentFrag = h;
   let m, dec;
   try{ dec = decodeURIComponent(h); }catch(e){ dec = h; }
-  if((m = dec.match(/^w-(.+)$/))){ const w = W.find(x=>x.slug === m[1]); if(w) return renderWorkSheet(w.id); }
-  if((m = dec.match(/^a-(.+)$/))){ const a = AD.find(x=>x.slug === m[1]); if(a) return renderAdSheet(a.id); }
-  /* 舊格式 #w12 / #a3(依陣列順序)仍然接受，但不再產生 */
-  if((m = h.match(/^w(\d+)$/))){ const w = W.find(x=>x.id === +m[1]); if(w) return renderWorkSheet(w.id); }
-  if((m = h.match(/^a(\d+)$/))){ const a = AD.find(x=>x.id === +m[1]); if(a) return renderAdSheet(a.id); }
+  if((m = dec.match(/^w-(.+)$/))){ const w = W.find(x=>x.slug === m[1]); if(w){ setPage("works"); return renderWorkSheet(w.id); }}
+  if((m = dec.match(/^a-(.+)$/))){ const a = AD.find(x=>x.slug === m[1]); if(a){ setPage("screen"); return renderAdSheet(a.id); }}
+  if((m = h.match(/^w(\d+)$/))){ const w = W.find(x=>x.id === +m[1]); if(w){ setPage("works"); return renderWorkSheet(w.id); }}
+  if((m = h.match(/^a(\d+)$/))){ const a = AD.find(x=>x.id === +m[1]); if(a){ setPage("screen"); return renderAdSheet(a.id); }}
+  if(h === "bio") setPage("home");
+  else if(PAGES.includes(h)) setPage(h);
+  else setPage("home");
   hideSheet();
 }
 window.addEventListener("hashchange", routeFromHash);
