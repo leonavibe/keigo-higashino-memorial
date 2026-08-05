@@ -407,6 +407,7 @@ footer a{color:var(--ink2)}
   .tools input[type=search],.tools select{font-size:16px;min-height:44px}
   .viewsw button{min-height:44px;padding:10px 14px;font-size:13.5px}
   .tgl{min-height:44px;padding:10px 14px}
+  .lk .lk-t{display:none}
   .sh-x{width:40px;height:40px;font-size:18px}
   .lk{min-height:40px;display:inline-flex;align-items:center;padding:9px 13px;font-size:13px}
   .sheet{max-width:100%;border-radius:0}
@@ -900,9 +901,9 @@ function linkList(title, groups, direct, searchMap){
   return groups.map(([label, list]) => {
     const items = list.map(pf => {
       const url = direct[pf];
-      if(url) return `<a class="lk ok" href="${esc(url)}" target="_blank" rel="noopener"><b>${esc(pf)}</b>：${esc(title)} ↗</a>`;
+      if(url) return `<a class="lk ok" href="${esc(url)}" target="_blank" rel="noopener"><b>${esc(pf)}</b><span class="lk-t">：${esc(title)}</span> ↗</a>`;
       if(!searchMap[pf]) return "";
-      return `<a class="lk sr" href="${esc(searchMap[pf] + qOf(title))}" target="_blank" rel="noopener"><b>${esc(pf)}</b>：${esc(title)}</a>`;
+      return `<a class="lk sr" href="${esc(searchMap[pf] + qOf(title))}" target="_blank" rel="noopener"><b>${esc(pf)}</b><span class="lk-t">：${esc(title)}</span></a>`;
     }).filter(Boolean).join("");
     return items ? `<div class="stgrp"><span class="stgl">【${esc(label)}】</span>
       <div class="linkcol">${items}</div></div>` : "";
