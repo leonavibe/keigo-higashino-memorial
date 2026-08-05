@@ -974,7 +974,7 @@ function renderWorkSheet(id){
         <div class="edtbl-wrap"><table class="edtbl edtbl-ad"><thead><tr><th>名稱</th><th>上映／播出</th><th>主演與角色</th></tr></thead>
         <tbody>${adRows}</tbody></table></div>` : ""}
       ${watch ? `<h5>觀看連結</h5>${watch}
-        <p class="muted" style="margin-top:6px">以上為已實際查證的觀看連結。未列出的平台表示該版本目前查無上架；上下架狀況會變動，連結需定期複查。</p>` : ""}
+        <p class="muted" style="margin-top:6px">以上皆為實際查證過的商品頁。未列出的平台表示該版本目前查無上架。</p>` : ""}
 
 
       <h5>資料來源</h5>
@@ -1006,7 +1006,7 @@ function renderAdSheet(id){
       ${a.cast.length ? `<h5>演員與角色</h5><div class="cast">${a.cast.map(c => `<span class="cst"><b>${esc(c[0])}</b>${c[1] ? ` <i>飾 ${esc(c[1])}</i>` : ""}</span>`).join("")}</div>` : ""}
       ${a.site ? `<h5>資料</h5><div class="linkrow"><a class="lk ok" href="${esc(a.site)}" target="_blank" rel="noopener">官方網站 ↗</a></div>` : ""}
       ${watch ? `<h5>觀看連結</h5>${watch}
-        <p class="muted" style="margin-top:6px">以上為已實際查證的觀看連結。未列出的平台表示該版本目前查無上架。</p>` : ""}
+        <p class="muted" style="margin-top:6px">以上皆為實際查證過的商品頁。未列出的平台表示該版本目前查無上架。</p>` : ""}
     </div>`;
   showSheet();
   $("#shX").onclick = closeSheet; $("#shX").focus();
