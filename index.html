@@ -386,7 +386,9 @@ footer a{color:var(--ink2)}
   .edtbl,.edtbl tbody,.edtbl tr{display:block;width:100%}
   .edtbl.edtbl-ed,.edtbl.edtbl-ad{table-layout:auto}
   .edtbl tr{border:1px solid var(--line2);border-radius:5px;padding:12px 14px;margin-bottom:9px}
-  .edtbl td{border:0;padding:5px 0;display:flex;gap:12px;align-items:baseline;width:auto}
+  .edtbl td{border:0;padding:5px 0;display:flex;gap:12px;align-items:baseline}
+  .edtbl.edtbl-ed td:nth-child(1),.edtbl.edtbl-ed td:nth-child(2),.edtbl.edtbl-ed td:nth-child(3),
+  .edtbl.edtbl-ad td:nth-child(1),.edtbl.edtbl-ad td:nth-child(2),.edtbl.edtbl-ad td:nth-child(3){width:auto}
   .edtbl td::before{content:attr(data-l);flex:0 0 6em;color:var(--ink3);font-size:11.5px;line-height:1.7}
   .edtbl td.edt{min-width:0;font-weight:500}
 
