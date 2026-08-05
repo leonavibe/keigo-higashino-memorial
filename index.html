@@ -98,14 +98,7 @@ a:hover{text-decoration:underline}
 .topnav a:hover{background:var(--panel2);text-decoration:none;color:var(--ink)}
 .topnav a.active{background:var(--accent);color:#fff}
 /* page router */
-main[data-page] > *{display:none !important}
-main[data-page="home"] > #home,
-main[data-page="home"] > .axis-sec,
-main[data-page="home"] > #bio{display:block !important}
-main[data-page="works"] > #works{display:block !important}
-main[data-page="series"] > #series{display:block !important}
-main[data-page="screen"] > #screen{display:block !important}
-main[data-page="fans"] > #fans{display:block !important}
+.page-hidden{display:none !important}
 .tgl{flex:none;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--panel);
   color:var(--ink2);border-radius:3px;padding:5px 10px;font-size:12px;cursor:pointer;font-family:"IBM Plex Mono",monospace}
 .tgl:hover{color:var(--ink);border-color:var(--accent)}
@@ -1069,11 +1062,18 @@ function closeSheet(){
 }
 let currentFrag = null;
 const PAGES = ["home","works","series","screen","fans"];
+const PAGE_IDS = {home:["home","bio"],works:["works"],series:["series"],screen:["screen"],fans:["fans"]};
 let currentPage = null;
 function setPage(page){
   if(page === currentPage) return;
   currentPage = page;
-  $("#main").dataset.page = page;
+  const main = $("#main");
+  const ids = PAGE_IDS[page] || PAGE_IDS.home;
+  for(const el of main.children){
+    const isAxis = el.classList.contains("axis-sec");
+    const show = ids.includes(el.id) || (page==="home" && isAxis);
+    el.classList.toggle("page-hidden", !show);
+  }
   document.querySelectorAll(".topnav a").forEach(a=>{
     a.classList.toggle("active", a.getAttribute("href") === "#"+page);
   });
