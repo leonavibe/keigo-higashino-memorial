@@ -524,7 +524,7 @@ footer a{color:var(--ink2)}
 <div class="tools-r2">
 <label class="chk"><input id="fAward" type="checkbox"/>有得獎</label>
 <label class="chk"><input id="fTv" type="checkbox"/>有影視改編</label>
-<label class="chk"><input id="fTw" type="checkbox"/>有台灣出版</label>
+<label class="chk"><input id="fTw" type="checkbox"/>台灣發行版本</label>
 <div aria-label="檢視方式" class="viewsw" role="group">
 <button aria-pressed="true" data-v="cards">卡片</button>
 <button aria-pressed="false" data-v="table">表格</button>
@@ -712,7 +712,7 @@ function current(){
     if(pf && !w._plats.has(pf)) return false;
     if(aw && !w.award) return false;
     if(tv && !w.hasTv) return false;
-    if(tw && !w._plats.size) return false;
+    if(tw && !w.editions?.some(e => Object.keys(e.links||{}).length && !/日文版/.test(e.label||''))) return false;
     if(q){
       const hay = [w.zh,w.jp,w.summary,w.series,w.award,w.screen].join(" ").toLowerCase();
       if(!hay.includes(q)) return false;
